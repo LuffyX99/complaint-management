@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusCare Login</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body class="auth-page">
+<main class="auth-shell">
+    <section class="auth-visual" aria-label="Campus request management preview">
+        <div class="campus-scene">
+            <div class="sun"></div>
+            <div class="building">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="walkway"></div>
+            <div class="ticket-card ticket-one">Hostel issue<br><strong>In review</strong></div>
+            <div class="ticket-card ticket-two">ID request<br><strong>Resolved</strong></div>
+        </div>
+    </section>
+
+    <section class="auth-panel">
+        <div class="brand-mark">CC</div>
+        <h1>CampusCare</h1>
+        <p class="muted">College complaint and request management portal</p>
+
+        <div th:if="${param.error}" class="alert error">Invalid user ID or password.</div>
+        <div th:if="${param.logout}" class="alert success">You have signed out successfully.</div>
+
+        <form th:action="@{/login}" method="post" class="stacked-form">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <label>
+                User ID
+                <input name="userId" type="text" autocomplete="username" placeholder="admin or student" required>
+            </label>
+            <label>
+                Password
+                <input name="password" type="password" autocomplete="current-password" placeholder="Enter password" required>
+            </label>
+            <button type="submit" class="primary-btn">Sign in</button>
+        </form>
+
+        <div class="demo-logins">
+            <span>Demo:</span>
+            <code>admin / admin123</code>
+            <code>student / student123</code>
+        </div>
+    </section>
+</main>
+</body>
+</html>
